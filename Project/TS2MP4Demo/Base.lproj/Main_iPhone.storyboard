@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Export View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="KMExportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hs0-Is-9B1"/>
+                        <viewControllerLayoutGuide type="bottom" id="ykk-ro-S8L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMh-1g-3cT">
+                                <rect key="frame" x="18" y="273" width="285" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="NRr-6Q-J1T"/>
+                                    <constraint firstAttribute="width" constant="285" id="fHc-4J-w5p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4e-Tg-DUG">
+                                <rect key="frame" x="75" y="381" width="170" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="IwD-a3-9c7"/>
+                                    <constraint firstAttribute="height" constant="30" id="cTF-Zz-pYJ"/>
+                                </constraints>
+                                <state key="normal" title="Export all TS in one MP4">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exportButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="v66-qU-jok"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKd-Nm-USA">
+                                <rect key="frame" x="60" y="419" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="WxR-0S-cxj"/>
+                                    <constraint firstAttribute="height" constant="30" id="ccb-07-VTm"/>
+                                </constraints>
+                                <state key="normal" title="Export all TS in different MP4">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testMemoryLeaksPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hmu-Kx-JPS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rKd-Nm-USA" firstAttribute="top" secondItem="G4e-Tg-DUG" secondAttribute="bottom" constant="8" id="4GJ-Qd-vaQ"/>
+                            <constraint firstItem="G4e-Tg-DUG" firstAttribute="top" secondItem="IMh-1g-3cT" secondAttribute="bottom" constant="87" id="Qy4-BV-td3"/>
+                            <constraint firstAttribute="centerY" secondItem="IMh-1g-3cT" secondAttribute="centerY" id="R4l-sr-Poi"/>
+                            <constraint firstAttribute="centerX" secondItem="G4e-Tg-DUG" secondAttribute="centerX" id="ZSm-8W-SFb"/>
+                            <constraint firstAttribute="centerX" secondItem="IMh-1g-3cT" secondAttribute="centerX" id="mqd-mG-bPy"/>
+                            <constraint firstAttribute="centerX" secondItem="rKd-Nm-USA" secondAttribute="centerX" id="rB0-df-Edt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exportButton" destination="G4e-Tg-DUG" id="7wT-5R-Jtc"/>
+                        <outlet property="infoLabel" destination="IMh-1g-3cT" id="wfJ-xl-IYn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

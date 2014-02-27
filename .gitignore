@@ -1,0 +1,24 @@
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.pyc
+*.xcworkspacedata
+*.bak
+*~.nib/
+build/*
+xcuserdata
+*.xcscheme
+*.xcworkspace
+
+# Textmate - if you build your xcode projects with it
+*.tm_build_errors
+
+# osx noise
+.DS_Store
+profile
+
+#CocoaPods
+Project/Podfile.lock
+Project/Pods

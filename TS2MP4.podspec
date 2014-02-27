@@ -2,6 +2,7 @@ Pod::Spec.new do |s|
   s.name = "TS2MP4"
   s.version = "0.1.0"
   s.summary = "TS2MP4 allow you to convert TS files to MP4 files."
+  s.homepage = "https://github.com/Keemotion/TS2MP4"
   s.description  = <<-DESC
           TS2MP4 allow you to convert TS files into MP4 files. It can also concatenate multiple TS files into a single MP4 file.
           The conversion of a TS file into a MP4 file is done in two steps.

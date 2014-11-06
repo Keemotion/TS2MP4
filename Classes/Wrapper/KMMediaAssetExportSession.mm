@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
     KMMediaAssetExportSessionOutputTypeUndefined
 };
 
+static double const UndefinedFPS = -1.0;
 
 @interface KMMediaAssetExportSession ()
 @property (nonatomic, readwrite) KMMediaAssetExportSessionStatus status;
@@ -139,14 +140,19 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
      Create two files into it:
      - a file storing the audio elementary stream of the MPEG-TS files (mp3 or aac)
      - a file storing the video elementary stream of the MPEG-TS files (h264)
+     Return the video elementary stream number of frames per second of the MPEG-TS files (h264)
      */
-    [self demuxFilesInTemporaryDirectory:temporaryDirectoryURL];
+    double video_stream_fps = [self getVideoFPSAndDemuxFilesInTemporaryDirectory:temporaryDirectoryURL];
     
-    /*
-     Mux the elementary stream stored in as files in the unique temporary directory
-     into a MP4 file and store it in the outputAsset
-     */
-    [self muxFilesFromTemporaryDirectory:temporaryDirectoryURL];
+    if(video_stream_fps != UndefinedFPS)
+    {
+        /*
+         Mux the elementary stream stored in as files in the unique temporary directory
+         into a MP4 file and store it in the outputAsset
+         */
+        [self muxFilesFromTemporaryDirectory:temporaryDirectoryURL withVideoStreamFPS:video_stream_fps];
+    }
+    else ALog(@"The video stream's FPS should always be retrieved");
     
     /*
      Delete the temporary directory
@@ -159,13 +165,13 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
 }
 
 
-- (void)demuxFilesInTemporaryDirectory:(NSURL *)outputDemuxDirectoryURL
+- (double)getVideoFPSAndDemuxFilesInTemporaryDirectory:(NSURL *)outputDemuxDirectoryURL
 {
     if(!outputDemuxDirectoryURL)
     {
         self.error = [NSError errorWithDomain:KMMediaAssetExportSessionErrorDomain code:KMMediaAssetExportSessionErrorCodeDemuxOperationFailed userInfo:@{NSLocalizedDescriptionKey:@"Directory to store elementary streams files not set."}];
         self.status = KMMediaAssetExportSessionStatusFailed;
-        return;
+        return UndefinedFPS;
     }
     
     /*
@@ -186,14 +192,31 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
      * The concatenate audio elementary streams file and
      * the concatenate video elementary streams file
      */
+    double previous_video_fps = UndefinedFPS;
+    double current_video_fps = UndefinedFPS;
     for (KMMediaAsset *inputAsset in self.inputAssets)
     {
-        cpp_demuxer.demux_file([[inputAsset.url path] UTF8String]);
+        current_video_fps = UndefinedFPS;
+        cpp_demuxer.demux_file([[inputAsset.url path] UTF8String], &current_video_fps);
+        if(current_video_fps == UndefinedFPS)
+        {
+            self.error = [NSError errorWithDomain:KMMediaAssetExportSessionErrorDomain code:KMMediaAssetExportSessionErrorCodeDemuxOperationFailed userInfo:@{NSLocalizedDescriptionKey:@"The FPS of the video stream couldn't be retrieved."}];
+            self.status = KMMediaAssetExportSessionStatusFailed;
+            return UndefinedFPS;
+        }
+        if(previous_video_fps != UndefinedFPS && previous_video_fps != current_video_fps)
+        {
+            self.error = [NSError errorWithDomain:KMMediaAssetExportSessionErrorDomain code:KMMediaAssetExportSessionErrorCodeDemuxOperationFailed userInfo:@{NSLocalizedDescriptionKey:@"All video elementary stream are not at the same FPS."}];
+            self.status = KMMediaAssetExportSessionStatusFailed;
+            return UndefinedFPS;
+        }
+        previous_video_fps = current_video_fps;
     }
+    return current_video_fps;
 }
 
 
-- (void)muxFilesFromTemporaryDirectory:(NSURL *)inputMuxDirectoryURL
+- (void)muxFilesFromTemporaryDirectory:(NSURL *)inputMuxDirectoryURL withVideoStreamFPS:(double)video_stream_fps
 {
     NSError *error;
     NSArray *inputMuxDirectoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[inputMuxDirectoryURL path] error:&error];
@@ -206,13 +229,6 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
         NSArray *audioExtensions = [NSArray arrayWithObjects:@"aac", @"mp3", nil];
         NSArray *audioElementaryStreamFiles = [inputMuxDirectoryContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", audioExtensions]];
         
-        if([audioElementaryStreamFiles count]>1)
-        {
-            self.error = [NSError errorWithDomain:KMMediaAssetExportSessionErrorDomain code:KMMediaAssetExportSessionErrorCodeDemuxOperationFailed userInfo:@{NSLocalizedDescriptionKey:@"Cannot decide wich audio elementary streams in the directory since there are more than one."}];
-            self.status = KMMediaAssetExportSessionStatusFailed;
-            return;
-        }
-        
         NSString *audioElementaryStreamFileName = [audioElementaryStreamFiles firstObject];
         
         /*
@@ -221,27 +237,19 @@ typedef NS_ENUM(NSUInteger, KMMediaAssetExportSessionOutputType) {
         NSArray *videoExtensions = [NSArray arrayWithObjects:@"264", nil];
         NSArray *videoElementaryStreamFiles = [inputMuxDirectoryContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", videoExtensions]];
         
-        if([videoElementaryStreamFiles count]>1)
-        {
-            self.error = [NSError errorWithDomain:KMMediaAssetExportSessionErrorDomain code:KMMediaAssetExportSessionErrorCodeDemuxOperationFailed userInfo:@{NSLocalizedDescriptionKey:@"Cannot decide wich video elementary streams in the directory since there are more than one."}];
-            self.status = KMMediaAssetExportSessionStatusFailed;
-            return;
-        }
-        
         NSString *videoElementaryStreamFileName = [videoElementaryStreamFiles firstObject];
         
         /*
          Assemble the elementary streams into a MP4 file
          */
-        if(videoElementaryStreamFileName && audioElementaryStreamFileName)
+        if(videoElementaryStreamFileName || audioElementaryStreamFileName)
         {
             KMMediaAsset *outputAsset = [self.outputAssets firstObject];
-
-            double fps = 20.0;
-            NSString *outputAudioElementaryStreamFilePath = [NSString stringWithFormat:@"%@/%@",[inputMuxDirectoryURL path],audioElementaryStreamFileName];
-            NSString *outputVideoElementaryStreamFilePath = [NSString stringWithFormat:@"%@/%@",[inputMuxDirectoryURL path],videoElementaryStreamFileName];
             
-            assemble_elementary_streams((char *)[outputVideoElementaryStreamFilePath UTF8String], (char *)[outputAudioElementaryStreamFilePath UTF8String], (char *)[[outputAsset.url path ] UTF8String], fps);
+            NSString *outputAudioElementaryStreamFilePath = (audioElementaryStreamFileName)?[NSString stringWithFormat:@"%@/%@",[inputMuxDirectoryURL path],audioElementaryStreamFileName]:@"";
+            NSString *outputVideoElementaryStreamFilePath = (videoElementaryStreamFileName)?[NSString stringWithFormat:@"%@/%@",[inputMuxDirectoryURL path],videoElementaryStreamFileName]:@"";
+            
+            assemble_elementary_streams((char *)[outputVideoElementaryStreamFilePath UTF8String], (char *)[outputAudioElementaryStreamFilePath UTF8String], (char *)[[outputAsset.url path ] UTF8String], video_stream_fps);
             
             self.status = KMMediaAssetExportSessionStatusCompleted;
         }

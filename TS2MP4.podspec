@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "TS2MP4"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
   s.summary = "TS2MP4 allow you to convert TS files to MP4 files."
   s.homepage = "https://github.com/Keemotion/TS2MP4"
   s.description  = <<-DESC

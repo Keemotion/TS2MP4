@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B93888B2D5E64CE2ABC5F97A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6886B098C88C4DB6A3A9437C /* libPods.a */; };
 		C314AC3A18AA272A002D05EA /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = C314AC3918AA272A002D05EA /* NSFileManager+Temporary.m */; };
 		C314AC3C18AA644F002D05EA /* KMMediaAssetExportSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3646DC71890098400C3D377 /* KMMediaAssetExportSession.mm */; };
 		C314AC3D18AA65E0002D05EA /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = C314AC3918AA272A002D05EA /* NSFileManager+Temporary.m */; };
@@ -17,7 +16,6 @@
 		C35BAFE8188FD6E500338036 /* mp4mux.c in Sources */ = {isa = PBXBuildFile; fileRef = C35BAFE7188FD6E500338036 /* mp4mux.c */; };
 		C3646DC41890055E00C3D377 /* KMMediaAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3646DC31890055E00C3D377 /* KMMediaAsset.m */; };
 		C3646DC81890098400C3D377 /* KMMediaAssetExportSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3646DC71890098400C3D377 /* KMMediaAssetExportSession.mm */; };
-		C36B1E2B1A0BACDE00321154 /* libPods-GPAC4iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C36B1E2A1A0BACDE00321154 /* libPods-GPAC4iOS.a */; };
 		C36B1E2C1A0BAF1D00321154 /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = C314AC3918AA272A002D05EA /* NSFileManager+Temporary.m */; };
 		C36B294A1897A2C4007839CB /* libTS2MP4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CA96D6188D64ED0032B099 /* libTS2MP4.a */; };
 		C382C8CD189FE4EC00ABD9C9 /* libTS2MP4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CA96D6188D64ED0032B099 /* libTS2MP4.a */; };
@@ -49,6 +47,7 @@
 		C3C63BC61898F8E80073F410 /* Discontinuous3.ts in Resources */ = {isa = PBXBuildFile; fileRef = C3C63BC01898F8E80073F410 /* Discontinuous3.ts */; };
 		C3CA96DA188D64ED0032B099 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CA96D9188D64ED0032B099 /* Foundation.framework */; };
 		C3CA970B188D66E70032B099 /* ts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3CA9703188D66E70032B099 /* ts.cpp */; };
+		FEC196C740FF068D00BB4E91 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6886B098C88C4DB6A3A9437C /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,9 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C36B1E2B1A0BACDE00321154 /* libPods-GPAC4iOS.a in Frameworks */,
 				C3CA96DA188D64ED0032B099 /* Foundation.framework in Frameworks */,
-				B93888B2D5E64CE2ABC5F97A /* libPods.a in Frameworks */,
+				FEC196C740FF068D00BB4E91 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +460,7 @@
 		C3CA96CE188D64ED0032B099 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Gailliez Jonathan";
 				TargetAttributes = {
 					C31C509018979DCD009A5644 = {
@@ -641,7 +639,6 @@
 		C31C50A118979DCD009A5644 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TS2MP4Demo.app/TS2MP4Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -669,7 +666,6 @@
 		C31C50A218979DCD009A5644 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TS2MP4Demo.app/TS2MP4Demo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -692,7 +688,6 @@
 		C3B718E9189FC5BB0027EAAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -719,7 +714,6 @@
 		C3B718EA189FC5BB0027EAAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -743,7 +737,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -780,7 +773,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -822,10 +814,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TS2MP4/TS2MP4-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"VERBOSE=1",
-					"COCOAPODS=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,7 +830,6 @@
 					"\"-isystem${PODS_ROOT}/Headers/GPAC4iOS/gpac/modules\"",
 					"-DVERBOSE=1",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -859,13 +847,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TS2MP4/TS2MP4-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "COCOAPODS=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
 				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

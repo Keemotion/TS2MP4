@@ -31,11 +31,7 @@
 #include <gpac/download.h>
 #include <gpac/network.h>
 
-#if __cplusplus
-extern "C"{
 #include <gpac/fileimport.h>
-}
-#endif
 
 #ifndef GPAC_DISABLE_SMGR
     #include <gpac/scene_manager.h>

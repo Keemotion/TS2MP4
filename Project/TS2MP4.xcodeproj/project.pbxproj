@@ -17,6 +17,8 @@
 		C35BAFE8188FD6E500338036 /* mp4mux.c in Sources */ = {isa = PBXBuildFile; fileRef = C35BAFE7188FD6E500338036 /* mp4mux.c */; };
 		C3646DC41890055E00C3D377 /* KMMediaAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3646DC31890055E00C3D377 /* KMMediaAsset.m */; };
 		C3646DC81890098400C3D377 /* KMMediaAssetExportSession.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3646DC71890098400C3D377 /* KMMediaAssetExportSession.mm */; };
+		C36B1E2B1A0BACDE00321154 /* libPods-GPAC4iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C36B1E2A1A0BACDE00321154 /* libPods-GPAC4iOS.a */; };
+		C36B1E2C1A0BAF1D00321154 /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = C314AC3918AA272A002D05EA /* NSFileManager+Temporary.m */; };
 		C36B294A1897A2C4007839CB /* libTS2MP4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CA96D6188D64ED0032B099 /* libTS2MP4.a */; };
 		C382C8CD189FE4EC00ABD9C9 /* libTS2MP4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CA96D6188D64ED0032B099 /* libTS2MP4.a */; };
 		C382C8D0189FE5D800ABD9C9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C63BAD1897E58D0073F410 /* libz.dylib */; };
@@ -72,8 +74,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0EB35B380550BB61E18C7FD3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4657393CC4244E59BF754666 /* libPods-TS2MP4Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TS2MP4Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6886B098C88C4DB6A3A9437C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1922464613B9B018AB8C644 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C314AC3818AA272A002D05EA /* NSFileManager+Temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+Temporary.h"; path = "../../Classes/Utils/NSFileManager+Temporary.h"; sourceTree = "<group>"; };
 		C314AC3918AA272A002D05EA /* NSFileManager+Temporary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+Temporary.m"; path = "../../Classes/Utils/NSFileManager+Temporary.m"; sourceTree = "<group>"; };
 		C31C50861896C14B009A5644 /* libPods-GPAC4iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GPAC4iOS.a"; path = "Pods/build/Debug-iphoneos/libPods-GPAC4iOS.a"; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		C3646DC31890055E00C3D377 /* KMMediaAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KMMediaAsset.m; path = ../Wrapper/KMMediaAsset.m; sourceTree = "<group>"; };
 		C3646DC61890098400C3D377 /* KMMediaAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KMMediaAssetExportSession.h; path = ../Wrapper/KMMediaAssetExportSession.h; sourceTree = "<group>"; };
 		C3646DC71890098400C3D377 /* KMMediaAssetExportSession.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = KMMediaAssetExportSession.mm; path = ../Wrapper/KMMediaAssetExportSession.mm; sourceTree = "<group>"; };
+		C36B1E281A0BAC9300321154 /* libPods-GPAC4iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GPAC4iOS.a"; path = "Pods/build/Release-iphoneos/libPods-GPAC4iOS.a"; sourceTree = "<group>"; };
+		C36B1E2A1A0BACDE00321154 /* libPods-GPAC4iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GPAC4iOS.a"; path = "Pods/build/Release-iphoneos/libPods-GPAC4iOS.a"; sourceTree = "<group>"; };
 		C36B294B1897A4FA007839CB /* libPods-GPAC4iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-GPAC4iOS.a"; path = "Pods/build/Debug-iphoneos/libPods-GPAC4iOS.a"; sourceTree = "<group>"; };
 		C36B294D1897A504007839CB /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C382C8CB189FE4D500ABD9C9 /* libPods-TS2MP4Demo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TS2MP4Demo.a"; path = "Pods/build/Debug-iphoneos/libPods-TS2MP4Demo.a"; sourceTree = "<group>"; };
@@ -135,7 +141,6 @@
 		C3CA9702188D66E70032B099 /* h264.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = h264.h; sourceTree = "<group>"; };
 		C3CA9703188D66E70032B099 /* ts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ts.cpp; sourceTree = "<group>"; };
 		C3CA9704188D66E70032B099 /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
-		E6058DF6B93A4B97A57B1ADF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36B1E2B1A0BACDE00321154 /* libPods-GPAC4iOS.a in Frameworks */,
 				C3CA96DA188D64ED0032B099 /* Foundation.framework in Frameworks */,
 				B93888B2D5E64CE2ABC5F97A /* libPods.a in Frameworks */,
 			);
@@ -299,7 +305,7 @@
 				C31C509518979DCD009A5644 /* TS2MP4Tests */,
 				C3CA96D8188D64ED0032B099 /* Frameworks */,
 				C3CA96D7188D64ED0032B099 /* Products */,
-				E6058DF6B93A4B97A57B1ADF /* Pods.xcconfig */,
+				EE437B599CFC001B84CB22CB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -316,6 +322,8 @@
 		C3CA96D8188D64ED0032B099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C36B1E2A1A0BACDE00321154 /* libPods-GPAC4iOS.a */,
+				C36B1E281A0BAC9300321154 /* libPods-GPAC4iOS.a */,
 				C382C8CB189FE4D500ABD9C9 /* libPods-TS2MP4Demo.a */,
 				C3B718F7189FD5320027EAAA /* libPods.a */,
 				C3C63BAD1897E58D0073F410 /* libz.dylib */,
@@ -380,6 +388,15 @@
 			);
 			name = Wrapper;
 			path = ../../Classes/wrapper;
+			sourceTree = "<group>";
+		};
+		EE437B599CFC001B84CB22CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1922464613B9B018AB8C644 /* Pods.debug.xcconfig */,
+				0EB35B380550BB61E18C7FD3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F2945DE311D6424D8A79ED98 /* Check Pods Manifest.lock */ = {
@@ -558,6 +575,7 @@
 			files = (
 				C3B718F2189FC6590027EAAA /* KMExportViewController.m in Sources */,
 				C3B718CB189FC5BA0027EAAA /* AppDelegate.m in Sources */,
+				C36B1E2C1A0BAF1D00321154 /* NSFileManager+Temporary.m in Sources */,
 				C3B718C7189FC5BA0027EAAA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -674,7 +692,7 @@
 		C3B718E9189FC5BB0027EAAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -701,7 +719,7 @@
 		C3B718EA189FC5BB0027EAAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -725,7 +743,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -762,7 +780,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) ";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -795,7 +813,7 @@
 		};
 		C3CA96FA188D64ED0032B099 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6058DF6B93A4B97A57B1ADF /* Pods.xcconfig */;
+			baseConfigurationReference = A1922464613B9B018AB8C644 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/TS2MP4.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -809,6 +827,11 @@
 					"COCOAPODS=1",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
+				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"\"-isystem${PODS_ROOT}/Headers\"",
@@ -827,7 +850,7 @@
 		};
 		C3CA96FB188D64ED0032B099 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6058DF6B93A4B97A57B1ADF /* Pods.xcconfig */;
+			baseConfigurationReference = 0EB35B380550BB61E18C7FD3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/TS2MP4.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -838,6 +861,10 @@
 				GCC_PREFIX_HEADER = "TS2MP4/TS2MP4-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "COCOAPODS=1";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

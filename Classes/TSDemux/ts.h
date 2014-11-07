@@ -205,10 +205,12 @@ namespace ts
         bool validate_type(u_int8_t type);
         u_int64_t decode_pts(const char* ptr);
         int get_stream_type(u_int8_t type);
+        bool is_video_stream_type(u_int8_t type);
         const char* get_stream_ext(u_int8_t type_id);
+        double compute_fps_from_frame_length(u_int32_t frame_length);
         
         // take 188/192 bytes TS/M2TS packet
-        int demux_ts_packet(const char* ptr);
+        int demux_ts_packet(const char* ptr, double* video_fps);
         
         void write_timecodes(FILE* fp,u_int64_t first_pts,u_int64_t last_pts,u_int32_t frame_num,u_int32_t frame_len);
 #ifndef OLD_TIMECODES
@@ -220,8 +222,8 @@ namespace ts
         
         void show(void);
         
-        int demux_file(const char* name);
-            
+        int demux_file(const char* name, double* video_fps);
+        
         void reset(void)
         {
             for(std::map<u_int16_t,stream>::iterator i=streams.begin();i!=streams.end();++i)

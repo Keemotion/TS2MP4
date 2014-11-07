@@ -238,6 +238,30 @@ int ts::demuxer::get_stream_type(u_int8_t type)
     return stream_type::data;
 }
 
+bool ts::demuxer::is_video_stream_type(u_int8_t type)
+{
+    switch(type)
+    {
+        case 0x01:
+        case 0x02:
+        case 0x1b:
+        case 0xea:
+            return true;
+        case 0x80:
+            return hdmv?false : true;
+        case 0x81:
+        case 0x06:
+        case 0x83:
+        case 0x03:
+        case 0x04:
+        case 0x82:
+        case 0x86:
+        case 0x8a:
+        default:
+            return false;
+    }
+}
+
 const char* ts::demuxer::get_stream_ext(u_int8_t type_id)
 {
     static const char* list[8]= { "aac", "m2v", "264", "vc1", "ac3", "mp3", "pcm", "dts" };
@@ -261,7 +285,12 @@ u_int64_t ts::demuxer::decode_pts(const char* ptr)
     return pts;
 }
 
-int ts::demuxer::demux_ts_packet(const char* ptr)
+double ts::demuxer::compute_fps_from_frame_length(u_int32_t frame_length)
+{
+    return 90000./(double)frame_length;
+}
+
+int ts::demuxer::demux_ts_packet(const char* ptr, double* video_fps)
 {
     u_int32_t timecode=0;
     if(hdmv)
@@ -536,7 +565,14 @@ int ts::demuxer::demux_ts_packet(const char* ptr)
                             printf("%.4x: track=%.4x.%.2i, type=%.2x, stream=%.2x, pts=%llums\n",pid,s.channel,s.id,s.type,s.stream_id,pts/90);
 #endif
                         if(s.dts>0 && pts>s.dts)
+                        {
                             s.frame_length=(u_int32_t)(pts-s.dts);
+                            
+                            if(is_video_stream_type(s.type))
+                            {
+                                *video_fps = compute_fps_from_frame_length(s.frame_length);
+                            }
+                        }
                         s.dts=pts;
                         
                         if(pts>s.last_pts)
@@ -557,7 +593,15 @@ int ts::demuxer::demux_ts_packet(const char* ptr)
                             printf("%.4x: track=%.4x.%.2i, type=%.2x, stream=%.2x, pts=%llums, dts=%llums\n",pid,s.channel,s.id,s.type,s.stream_id,pts/90,dts/90);
 #endif
                         if(s.dts>0 && dts>s.dts)
+                        {
                             s.frame_length=(u_int32_t)(dts-s.dts);
+                            
+                            if(is_video_stream_type(s.type))
+                            {
+                                *video_fps = compute_fps_from_frame_length(s.frame_length);
+                            }
+                        }
+                        
                         s.dts=dts;
                         
                         if(pts>s.last_pts)
@@ -669,7 +713,7 @@ void ts::demuxer::show(void)
     }
 }
 
-int ts::demuxer::demux_file(const char* name)
+int ts::demuxer::demux_file(const char* name, double* video_fps)
 {
 //    prefix.clear();
     
@@ -727,7 +771,7 @@ int ts::demuxer::demux_file(const char* name)
         }
         
         int n;
-        if((n=demux_ts_packet(buf)))
+        if((n=demux_ts_packet(buf, video_fps)))
         {
 #ifdef VERBOSE
             fprintf(stderr,"%s: invalid packet %llu (%i)\n",name,pn,n);

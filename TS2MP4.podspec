@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.requires_arc = true
   
-  s.dependency 'GPAC4iOS', '0.1.0'
+  s.dependency 'GPAC4iOS', '0.2.0'
   s.libraries = 'z', 'stdc++'
   
   s.source_files = 'Classes/**/*.{h,m,mm,cpp,c}'

@@ -231,6 +231,8 @@ int assemble_elementary_streams(char *left_stream, char *right_stream, char *out
 
     GF_ISOFile *file;
     GF_Err e;
+    GF_Err error_left_stream;
+    GF_Err error_right_stream;
     u32 import_flags = 0;
 
     u32 agg_samples = 0;
@@ -265,19 +267,12 @@ int assemble_elementary_streams(char *left_stream, char *right_stream, char *out
     /*
     FOR elementary streams
     */
-    e = import_file(file, left_stream, import_flags, import_fps, agg_samples);
+    error_left_stream = import_file(file, left_stream, import_flags, import_fps, agg_samples);
+    error_right_stream = import_file(file, right_stream, import_flags, import_fps, agg_samples);
     
-    if (e) {
+    if (error_left_stream && error_right_stream) {
 #ifdef VERBOSE
-        fprintf(stderr, "Cannot import left stream %s: %s\n", inName, gf_error_to_string(gf_isom_last_error(NULL)) );
-#endif
-        return 2;
-    }
-
-    e = import_file(file, right_stream, import_flags, import_fps, agg_samples);
-    if (e) {
-#ifdef VERBOSE
-        fprintf(stderr, "Cannot import right stream %s: %s\n", inName, gf_error_to_string(gf_isom_last_error(NULL)) );
+        fprintf(stderr, "Cannot import video AND audio streams %s: %s\n", inName, gf_error_to_string(gf_isom_last_error(NULL)) );
 #endif
         return 2;
     }

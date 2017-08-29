@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '7.0'
+platform :ios, '9.3'
 inhibit_all_warnings!
 
-pod 'GPAC4iOS', '0.2.1'
+pod 'GPAC4iOS', '0.2.2'

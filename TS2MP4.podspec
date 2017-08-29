@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "TS2MP4"
-  s.version = "0.2.1"
+  s.version = "0.2.2"
   s.summary = "TS2MP4 allow you to convert TS files to MP4 files."
   s.homepage = "https://github.com/Keemotion/TS2MP4"
   s.description  = <<-DESC
@@ -22,10 +22,10 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Keemotion/TS2MP4.git", :tag => s.version.to_s }
 
   s.platform = :ios
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '9.3'
   s.requires_arc = true
   
-  s.dependency 'GPAC4iOS', '0.2.1'
+  s.dependency 'GPAC4iOS', '0.2.2'
 
   s.libraries = 'z', 'stdc++'
   
